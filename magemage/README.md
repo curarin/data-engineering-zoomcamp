@@ -1,8 +1,4 @@
-<div>
-<img src="https://github.com/mage-ai/assets/blob/main/mascots/mascots-shorter.jpeg?raw=true">
-</div>
-
-## Data Engineering Zoomcamp - Week 2 with Mage
+## Data Engineering Zoomcamp - Week 23 BigQuery
 
 ### These are SQL queries i used for the homework
 - Step 1: Spin up docker compose locally
