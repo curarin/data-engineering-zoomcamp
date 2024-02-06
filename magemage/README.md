@@ -1,4 +1,4 @@
-## Data Engineering Zoomcamp - Week 23 BigQuery
+## Data Engineering Zoomcamp - Week 3 BigQuery
 
 ### These are SQL queries i used for the homework
 - Step 1: Spin up docker compose locally
