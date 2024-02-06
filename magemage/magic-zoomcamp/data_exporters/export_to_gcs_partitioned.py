@@ -13,7 +13,7 @@ if 'data_exporter' not in globals():
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "/home/src/creds.json"
 bucket_name = "adroit-medium-379911-magedemo"
 project_id = "adroit-medium-379911"
-table_name = "nyc_green_taxi_data"
+table_name = "nyc_green_taxi_whole_year_v2"
 root_path = f"{bucket_name}/{table_name}"
 
 @data_exporter

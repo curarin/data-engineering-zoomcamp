@@ -8,36 +8,40 @@ if 'test' not in globals():
 @data_loader
 def load_data_from_file(*args, **kwargs):
     import pandas as pd
-    #dtypes declaring
-    taxi_dtypes = taxi_dtypes = {
-        'VendorID': pd.Int64Dtype(),
-        'passenger_count': pd.Int64Dtype(),
-        'trip_distance': float,
-        'RatecodeID': pd.Int64Dtype(),
-        'store_and_fwd_flag': str,
-        'PULocationID': pd.Int64Dtype(),
-        'DOLocationID': pd.Int64Dtype(),
-        'payment_type': pd.Int64Dtype(),
-        'fare_amount': float,
-        'extra': float,
-        'mta_tax': float,
-        'tip_amount': float,
-        'tolls_amount': float,
-        'improvement_surcharge': float,
-        'total_amount': float,
-        'congestion_surcharge': float 
+    import glob
+
+    # Define the dtypes
+    taxi_dtypes = {
+        'VendorID': 'Int64',
+        'passenger_count': 'Int64',
+        'trip_distance': 'float64',
+        'RatecodeID': 'Int64',
+        'store_and_fwd_flag': 'str',
+        'PULocationID': 'Int64',
+        'DOLocationID': 'Int64',
+        'payment_type': 'Int64',
+        'fare_amount': 'float64',
+        'extra': 'float64',
+        'mta_tax': 'float64',
+        'tip_amount': 'float64',
+        'tolls_amount': 'float64',
+        'improvement_surcharge': 'float64',
+        'total_amount': 'float64',
+        'congestion_surcharge': 'float64'
     }
 
-    #load all three months at once
-    file_list = ["green_tripdata_2020-10.csv.gz", "green_tripdata_2020-11.csv.gz", "green_tripdata_2020-12.csv.gz"]
-    compression = "gzip"
-    dtype = taxi_dtypes  
-    parse_dates = ["lpep_pickup_datetime", "lpep_dropoff_datetime"]
-
-    dfs = [pd.read_csv(file, compression=compression, dtype=dtype, parse_dates=parse_dates) for file in file_list]
+    # Get the file list matching the regex pattern
+    file_list = glob.glob("green_tripdata_2022-*.parquet")
+    
+    # Load data from Parquet files
+    dfs = [pd.read_parquet(file) for file in file_list]
+    
+    # Concatenate all DataFrames
     df = pd.concat(dfs)
     
-
+    # Convert columns to specified dtypes
+    df = df.astype(taxi_dtypes)
+    
     return df
 
 
