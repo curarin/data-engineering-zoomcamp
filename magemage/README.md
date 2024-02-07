@@ -1,3 +1,19 @@
+## Data Engineering Zoomcamp - Week 2 Orchestration
+- Pipeline is called "green_taxi_etl"
+
+Blocks are called:
+- week2_load_local_files
+    - Data Loader from local files
+- week2_transform_data
+    - Data Transformer to remove rows where the passenger count = 0 as well as trip distance is 0
+- export_to_postgres
+    - load data to postgres
+- load_data_from_postgres
+    - load the data from postgres again
+- week2_export_to_gcs_partintioned
+    - load the data to bucket and partinion it by date
+
+
 ## Data Engineering Zoomcamp - Week 3 BigQuery
 
 ### These are SQL queries i used for the homework

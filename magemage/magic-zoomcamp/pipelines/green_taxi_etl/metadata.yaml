@@ -1,9 +1,28 @@
 blocks:
 - all_upstream_blocks_executed: true
   color: null
-  configuration: {}
+  configuration:
+    file_source:
+      path: data_exporters/export_to_postgres.py
   downstream_blocks:
   - load_data_from_postgres
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: export_to_postgres
+  retry_config: null
+  status: not_executed
+  timeout: null
+  type: data_exporter
+  upstream_blocks:
+  - week2_transform_data
+  uuid: export_to_postgres
+- all_upstream_blocks_executed: true
+  color: null
+  configuration: {}
+  downstream_blocks:
+  - export_to_postgres
   executor_config: null
   executor_type: local_python
   has_callback: false
@@ -48,7 +67,7 @@ blocks:
   upstream_blocks:
   - load_data_from_postgres
   uuid: week2_export_to_gcs_partitioned
-- all_upstream_blocks_executed: true
+- all_upstream_blocks_executed: false
   color: null
   configuration: {}
   downstream_blocks:
@@ -63,7 +82,7 @@ blocks:
   timeout: null
   type: data_loader
   upstream_blocks:
-  - week2_transform_data
+  - export_to_postgres
   uuid: load_data_from_postgres
 cache_block_output_in_memory: false
 callbacks: []
@@ -86,7 +105,7 @@ settings:
 spark_config: {}
 tags: []
 type: python
-updated_at: '2024-02-07 10:20:24'
+updated_at: '2024-02-07 10:34:31'
 uuid: green_taxi_etl
 variables_dir: /home/src/mage_data/magic-zoomcamp
 widgets: []
